@@ -29,6 +29,10 @@ exports.getBootcamp = async (req, res, next) => {
     try {
         const bootcamp = await Bootcamp.findById(req.params.id);
 
+        if (!bootcamp) {
+            return res.status(404).json({ success: false });
+        }
+
         res.status(200).json({
             success: true,
             data: bootcamp,
